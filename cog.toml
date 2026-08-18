@@ -34,7 +34,7 @@ fix = { changelog_title = "🐛 Bug Fixes", bump_patch = true }
 merge = { changelog_title = "🔀 Merge branch", bump_minor = true }
 feat = { changelog_title = "✨ New Features", bump_minor = true }
 refactor = { changelog_title = "♻️ Code Refactoring", bump_patch = true }
-chore = { changelog_title = "🎫 Chores & Maintenance", bump_patch = true }
+chore = { bump_patch = true, omit_from_changelog = true }
 perf = { changelog_title = "⚡ Performance Improvements", bump_patch = true }
 ci = { changelog_title = "👷 Continuous Integration" }
 ops = { changelog_title = "☁️ Operations & Infrastructure" }
