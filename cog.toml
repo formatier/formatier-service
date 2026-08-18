@@ -51,23 +51,23 @@ authors = []
 [monorepo]
 resolver = "Cargo"
 
-[packages.forma-core]
+[monorepo.packages.forma-core]
 path = "adaptors/forma-core"
 changelog_path = "CHANGELOG.md"
 public_api = true
 
-[packages.forma-proc-macro]
+[monorepo.packages.forma-proc-macro]
 path = "adaptors/forma-proc-macro"
 changelog_path = "CHANGELOG.md"
 public_api = true
 
-[packages.api-gateway]
+[monorepo.packages.api-gateway]
 path = "adaptors/api-gateway"
 changelog_path = "CHANGELOG.md"
 public_api = false
 bump_order = 1
 
-[packages.auth-service]
+[monorepo.packages.auth-service]
 path = "services/auth-service"
 changelog_path = "CHANGELOG.md"
 public_api = false
