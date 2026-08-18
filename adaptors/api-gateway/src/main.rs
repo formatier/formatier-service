@@ -10,7 +10,6 @@ use forma_core::{utils::init_rustls, value_objects::PORT};
 use std::{
     collections::HashMap,
     net::{Ipv4Addr, SocketAddrV4},
-    pin::Pin,
     sync::Arc,
 };
 
