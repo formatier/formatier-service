@@ -1,0 +1,9 @@
+/target
+
+/deployment
+skaffold.yml
+
+.DS_Store
+.fleet
+.idea
+.vscode

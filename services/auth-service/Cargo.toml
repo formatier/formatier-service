@@ -1,0 +1,26 @@
+[package]
+name = "auth-service"
+version = "0.0.1"
+edition = "2024"
+
+[dependencies]
+axum = {version="0.8.9", features=["macros"]}
+url = "2.5.8"
+reqwest = { version = "0.13.4", features = ["json"] }
+woothee = "0.13.0"
+jsonwebtoken = "10.4.0"
+bb8 = "0.9.1"
+axum-extra = "0.12.6"
+
+forma-core = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+uuid = { workspace = true }
+async-trait = { workspace = true }
+mongodb = { workspace = true }
+futures = { workspace = true }
+chrono = { workspace = true }
+redis = { workspace = true }
+strum = { workspace = true }
+tokio = { workspace = true }

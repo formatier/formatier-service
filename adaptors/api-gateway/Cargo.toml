@@ -1,0 +1,18 @@
+[package]
+name = "api-gateway"
+version = "0.0.1"
+edition = "2024"
+
+[dependencies]
+reqwest = { version = "0.13.4", features = ["json"] }
+url = "2.5.8"
+dynfmt = {version="0.2.0", features = ["curly"]}
+serde_yaml_ng = "0.10"
+axum-reverse-proxy = "1.3.0"
+
+axum = { workspace = true }
+axum-extra = { workspace = true }
+forma-core = { workspace = true }
+tokio = { workspace = true }
+serde_json = { workspace = true }
+serde = { workspace = true }
