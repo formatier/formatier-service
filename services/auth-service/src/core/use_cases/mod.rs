@@ -1,19 +1,16 @@
 use std::{collections::HashMap, sync::Arc};
 
 use forma_core::domain::entities::{
-    FormaError, FormaErrorApp, FormaErrorAuth, FormaErrorDatabase,
+    FormaError, FormaErrorAuth,
     auth_service::{
-        Account, AccountMetadata, AccountModel, AccountModelPairs, AccountV1, AccountV1Provider,
-        Provider, User, UserModel,
+        AccountMetadata, AccountModelPairs, AccountV1, AccountV1Provider,
+        Provider,
     },
 };
 
 use crate::{
     core::services::TokenService,
-    domain::{
-        blueprints::{OAuthBlueprint, RepositoryBlueprint, TokenCacheBlueprint},
-        entities::Token,
-    },
+    domain::blueprints::{OAuthBlueprint, RepositoryBlueprint, TokenCacheBlueprint},
 };
 
 pub struct UseCase {

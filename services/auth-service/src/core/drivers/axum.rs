@@ -58,5 +58,5 @@ impl AxumDriver {
         }
     }
 
-    pub async fn middleware_auth(State(state): State<Arc<AxumDriver>>) -> impl IntoResponse {}
+    pub async fn middleware_auth(State(_state): State<Arc<AxumDriver>>) -> impl IntoResponse {}
 }

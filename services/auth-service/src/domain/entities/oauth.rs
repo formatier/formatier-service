@@ -31,11 +31,15 @@ impl Into<OAuthUserInfo> for GoogleOpenIDUserInfo {
             email: self.email,
             username: None,
             avatar_url: self.picture,
-            display_name: Some(format!(
-                "{} {}",
-                self.given_name,
-                self.family_name.unwrap_or("".into())
-            ).trim_matches(' ').into()),
+            display_name: Some(
+                format!(
+                    "{} {}",
+                    self.given_name,
+                    self.family_name.unwrap_or("".into())
+                )
+                .trim_matches(' ')
+                .into(),
+            ),
             bio: None,
             website: None,
         }

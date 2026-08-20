@@ -1,4 +1,4 @@
-use std::{env, sync::LazyLock};
+use std::sync::LazyLock;
 
 use forma_core::{inline_mod, value_objects::get_env};
 

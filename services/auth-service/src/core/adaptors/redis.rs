@@ -3,7 +3,6 @@ use bb8::{Pool, PooledConnection};
 use chrono::TimeDelta;
 use forma_core::domain::entities::{
     FormaError, FormaErrorDatabase, FormaErrorExt, FormaErrorExternalService, FormaErrorRedisExt,
-    IntenalInfo,
 };
 use redis::AsyncCommands;
 

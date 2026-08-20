@@ -5,7 +5,7 @@ use forma_core::domain::entities::{
     FormaError, FormaErrorAuth, FormaErrorExt,
     auth_service::{
         AccessTokenClaims, Audience, InitializationTokenClaims, Issuer, LatestSession,
-        RefreshTokenClaims, SessionMetadata, SessionModelPairs, SessionV1, TokenClaims,
+        RefreshTokenClaims, SessionModelPairs, TokenClaims,
     },
 };
 use jsonwebtoken::{Algorithm, DecodingKey, EncodingKey, Header, Validation, decode, encode};
@@ -14,7 +14,7 @@ use serde::{Deserialize, Serialize};
 use crate::{
     domain::{
         blueprints::{TokenCacheBlueprint, TokenRepositoryBlueprint},
-        entities::{Token, TokenType},
+        entities::TokenType,
     },
     value_objects,
 };
@@ -192,11 +192,11 @@ impl TokenService {
         }
     }
 
-    pub async fn refresh_tokens(&self, session_id: &str) -> Result<(), FormaError> {
+    pub async fn refresh_tokens(&self, _session_id: &str) -> Result<(), FormaError> {
         Ok(())
     }
 
-    pub async fn revoke_session(&self, session_id: &str) -> Result<(), FormaError> {
+    pub async fn revoke_session(&self, _session_id: &str) -> Result<(), FormaError> {
         Ok(())
     }
 }
