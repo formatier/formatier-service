@@ -4,10 +4,15 @@ use std::{
 };
 
 use axum::routing::post;
-use forma_core::value_objects::PORT;
+use forma_core::value_objects::{AUTH_DB_KEY, PORT};
+use mongodb::options::ClientOptions;
 use tokio::net::TcpListener;
 
-use crate::core::{adaptors, drivers::AxumDriver, use_cases};
+use crate::core::{
+    adaptors::{GoogleOAuthApi, MongodbAdaptor, RedisAdaptor},
+    drivers::AxumDriver,
+    use_cases::UseCase,
+};
 
 mod core;
 mod domain;
@@ -16,16 +21,12 @@ mod value_objects;
 
 #[tokio::main]
 async fn main() {
-    let google_oauth_adaptor = Arc::new(adaptors::GoogleOAuthApi::new());
-    let github_oauth_adaptor = Arc::new(adaptors::GoogleOAuthApi::new());
+    let google_oauth_adaptor = Arc::new(GoogleOAuthApi::new());
+    let github_oauth_adaptor = Arc::new(GoogleOAuthApi::new());
 
-    let postgresql_connection_options =
-        ConnectOptions::new(value_objects::DATABASE_URL.to_string());
-    let postgresql_adaptor = Arc::new(adaptors::PostgreSql::new(
-        Database::connect(postgresql_connection_options)
-            .await
-            .unwrap(),
-    ));
+    let mongo_client_opt = ClientOptions::builder().build();
+    let mongo_conn = mongodb::Client::with_options(mongo_client_opt).unwrap();
+    let mongodb_adaptor = Arc::new(MongodbAdaptor::new(mongo_conn.database(AUTH_DB_KEY)));
 
     let redis_client = redis::Client::open(value_objects::CACHE_URL.to_string()).unwrap();
     let redis_conn = bb8::Pool::builder()
@@ -33,12 +34,12 @@ async fn main() {
         .build(redis_client)
         .await
         .unwrap();
-    let redis_adaptor = Arc::new(adaptors::Redis::new(redis_conn));
+    let redis_adaptor = Arc::new(RedisAdaptor::new(redis_conn));
 
-    let use_case = use_cases::UseCase::new(
+    let use_case = UseCase::new(
         google_oauth_adaptor,
         github_oauth_adaptor,
-        postgresql_adaptor,
+        mongodb_adaptor,
         redis_adaptor,
     );
 

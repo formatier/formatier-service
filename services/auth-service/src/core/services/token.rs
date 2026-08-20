@@ -89,7 +89,7 @@ impl TokenService {
         email: &str,
         scope: &[&str],
         user_agent: LatestSession,
-    ) -> Result<(Token, Token), FormaError> {
+    ) -> Result<(String, String), FormaError> {
         let session_metadata = self
             .token_repository
             .create_session_metadata(account_id)
@@ -136,10 +136,10 @@ impl TokenService {
             TokenType::Refresh,
         )?;
 
-        Ok((Token::new(access_token), Token::new(refresh_token)))
+        Ok((access_token, refresh_token))
     }
 
-    pub fn issue_initialization_token(&self, account_id: &str) -> Result<Token, FormaError> {
+    pub fn issue_initialization_token(&self, account_id: &str) -> Result<String, FormaError> {
         let initialization_token = self.encode_token(
             TokenClaims {
                 issuer: Issuer::Formatier,
@@ -153,7 +153,7 @@ impl TokenService {
             TokenType::Initialization,
         )?;
 
-        Ok(Token::new(initialization_token))
+        Ok(initialization_token)
     }
 
     pub async fn parse_token<T: for<'de> Deserialize<'de>>(

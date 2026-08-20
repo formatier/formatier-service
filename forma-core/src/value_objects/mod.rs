@@ -1,9 +1,6 @@
 use std::{env, sync::LazyLock};
 
-use crate::{
-    domain::entities::{FormaError, FormaErrorExt, FormaErrorKind},
-    inline_mod,
-};
+use crate::domain::entities::{FormaError, FormaErrorExt, FormaErrorKind};
 
 pub enum RuntimeEnvironment {
     Dev,
@@ -24,6 +21,8 @@ pub const RUNTIME_ENV: RuntimeEnvironment = RuntimeEnvironment::Prod;
 
 pub static PORT: LazyLock<u16> =
     LazyLock::new(|| get_env("PORT").unwrap_or("3310".into()).parse().unwrap());
+
+pub const AUTH_DB_KEY: &'static str = "auth_services";
 
 pub const AUTH_DB_ACCOUNT_COLLECTION_KEY: &'static str = "account";
 pub const AUTH_DB_USER_COLLECTION_KEY: &'static str = "user";

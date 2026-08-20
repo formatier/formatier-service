@@ -44,7 +44,7 @@ impl UseCase {
         provider: Provider,
         code: &str,
         user_agent: &str,
-    ) -> Result<(Token, Option<Token>), FormaError> {
+    ) -> Result<(String, Option<String>), FormaError> {
         let oauth_user_info = match provider {
             Provider::Google => {
                 let token = self.google_oauth.exchange_code(code).await?;

@@ -1,8 +1,8 @@
 use async_trait::async_trait;
 use forma_core::{
     domain::entities::{
-        BsonTime, Created, FormaError, FormaErrorDatabase, FormaErrorExt, FormaErrorMongoExt,
-        Saved, Timestamp,
+        BsonTime, FormaError, FormaErrorDatabase, FormaErrorExt, FormaErrorMongoExt, Saved,
+        Timestamp,
         auth_service::{
             AccountModel, AccountModelPairs, Provider, SessionMetadata, SessionModel,
             SessionModelPairs, UserModel, UserModelPairs,
@@ -12,10 +12,12 @@ use forma_core::{
         AUTH_DB_ACCOUNT_COLLECTION_KEY, AUTH_DB_SESSION_COLLECTION_KEY, AUTH_DB_USER_COLLECTION_KEY,
     },
 };
-use futures::{FutureExt, Stream, StreamExt, TryStreamExt};
+use futures::{StreamExt, TryStreamExt};
 use mongodb::bson::{self, oid};
 
-use crate::domain::blueprints::{AccountRepositoryBlueprint, TokenRepositoryBlueprint};
+use crate::domain::blueprints::{
+    AccountRepositoryBlueprint, RepositoryBlueprint, TokenRepositoryBlueprint,
+};
 
 pub struct MongodbAdaptor {
     db: mongodb::Database,
@@ -481,3 +483,5 @@ impl TokenRepositoryBlueprint for MongodbAdaptor {
         }
     }
 }
+
+impl RepositoryBlueprint for MongodbAdaptor {}
